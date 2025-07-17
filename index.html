@@ -1,55 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ridhi Thakker | Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ridhi Thakker | Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-text">
-            <h1>Ridhi Thakker</h1>
-            <p>Salesforce Developer & Data Analyst Enthusiast</p>
-        </div>
-        <div class="hero-logos">
-            <img src="assets/images/salesforce.svg" alt="Salesforce" />
-            <img src="assets/images/data-analytics.svg" alt="Data Analytics" />
-        </div>
-    </header>
+  <!-- Sticky Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills-scroll">
-            <img src="assets/images/salesforce.svg" alt="Salesforce">
-            <img src="assets/images/apex.svg" alt="Apex">
-            <img src="assets/images/lwc.svg" alt="LWC">
-            <img src="assets/images/javascript.svg" alt="JavaScript">
-            <img src="assets/images/python.svg" alt="Python">
-            <img src="assets/images/sql.svg" alt="SQL">
-            <img src="assets/images/tableau.svg" alt="Tableau">
-            <img src="assets/images/github.svg" alt="GitHub">
-            <img src="assets/images/html.svg" alt="HTML5">
-            <img src="assets/images/css.svg" alt="CSS3">
-        </div>
-    </section>
+  <!-- Hero/Header -->
+  <header class="hero">
+    <div class="hero-text">
+      <h1>Ridhi Thakker</h1>
+      <p>Salesforce Developer & Data Analyst Enthusiast</p>
+    </div>
+    <div class="hero-logos">
+      <img src="assets/images/salesforce.png" alt="Salesforce" />
+      <img src="assets/images/data-analytics.png" alt="Data Analytics" />
+    </div>
+  </header>
 
-    <section id="resume">
-        <h2>Resume</h2>
-        <p><a href="resume/RidhiThakker_Salesforce.pdf" target="_blank">Download My Resume (PDF)</a></p>
-    </section>
+  <!-- Skills -->
+  <section id="skills" data-aos="fade-up">
+    <h2>Skills</h2>
+    <div class="skills-scroll">
+      <img src="assets/images/salesforce.png" alt="Salesforce">
+      <img src="assets/images/apex.png" alt="Apex">
+      <img src="assets/images/lwc.png" alt="LWC">
+      <img src="assets/images/javascript.png" alt="JavaScript">
+      <img src="assets/images/python.png" alt="Python">
+      <img src="assets/images/sql.png" alt="SQL">
+      <img src="assets/images/tableau.png" alt="Tableau">
+      <img src="assets/images/github.png" alt="GitHub">
+      <img src="assets/images/html.png" alt="HTML5">
+      <img src="assets/images/css.png" alt="CSS3">
+    </div>
+  </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:thakker.ridhi@gmail.com">thakker.ridhi@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/ridhi-thakker-0a3328217" target="_blank">linkedin.com/in/ridhi-thakker-0a3328217</a></p>
-    </section>
+  <!-- Resume -->
+  <section id="resume" data-aos="fade-up">
+    <h2>Resume</h2>
+    <p><a href="resume/RidhiThakker_Salesforce.pdf" target="_blank">Download My Resume (PDF)</a></p>
+  </section>
 
-    <footer>
-        <p>© 2025 Ridhi Thakker</p>
-    </footer>
+  <!-- Projects -->
+  <section id="projects" data-aos="fade-up">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Salesforce Automation</h3>
+        <p>Automated lead assignment & task creation using Flow & Apex.</p>
+      </div>
+      <div class="project-card">
+        <h3>Data Dashboard</h3>
+        <p>Built in Tableau to visualize Salesforce case resolution times.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:thakker.ridhi@gmail.com">thakker.ridhi@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/ridhi-thakker-0a3328217" target="_blank">linkedin.com/in/ridhi-thakker-0a3328217</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Ridhi Thakker</p>
+  </footer>
+
+  <!-- Scroll Animation Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
 
 </body>
 </html>
