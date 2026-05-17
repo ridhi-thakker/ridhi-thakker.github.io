@@ -3,87 +3,777 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ridhi Thakker | Portfolio</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <title>Ridhi Thakker | Salesforce Developer &amp; Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Devicons for tech logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+  <style>
+    :root {
+      --blue:       #0F2D5E;
+      --blue-mid:   #1A4E9F;
+      --blue-light: #E8EFFC;
+      --blue-pale:  #F3F7FE;
+      --white:      #FFFFFF;
+      --slate:      #3A4A6B;
+      --muted:      #6475A0;
+      --border:     #D0DCF5;
+      --shadow:     rgba(15,45,94,0.09);
+      --font-d:     'Cormorant Garamond', Georgia, serif;
+      --font-b:     'Outfit', sans-serif;
+      --font-m:     'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-b); background: var(--white); color: var(--blue); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 6vw;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 62px;
+    }
+    .nav-logo { font-family: var(--font-d); font-size: 1.25rem; color: var(--blue); font-weight: 700; letter-spacing: 0.01em; }
+    .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 500; color: var(--slate);
+      text-decoration: none; letter-spacing: 0.07em; text-transform: uppercase;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--blue-mid); transition: width 0.25s; }
+    .nav-links a:hover { color: var(--blue-mid); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { background: var(--blue) !important; color: var(--white) !important; padding: 7px 18px; border-radius: 5px; }
+    .nav-cta:hover { background: var(--blue-mid) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { width: 24px; height: 1.5px; background: var(--blue); display: block; }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh; display: flex; align-items: center;
+      padding: 80px 6vw 100px; position: relative; overflow: hidden;
+      background: linear-gradient(140deg, var(--blue-pale) 0%, var(--white) 65%);
+    }
+    .hero-blob { position: absolute; border-radius: 50%; z-index: 0; pointer-events: none; }
+    .hero-blob.b1 { width: 480px; height: 480px; top: -120px; right: -60px; background: var(--blue-light); opacity: 0.75; }
+    .hero-blob.b2 { width: 200px; height: 200px; bottom: 80px; left: 5%; background: var(--blue-light); opacity: 0.4; }
+    .hero-content { position: relative; z-index: 1; max-width: 660px; }
+
+    .hero h1 {
+      font-family: var(--font-d);
+      font-size: clamp(3.6rem, 8vw, 6.2rem);
+      line-height: 1.0; color: var(--blue); font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .hero-roles {
+      font-family: var(--font-b);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--blue-mid); font-weight: 500;
+      margin-bottom: 10px; letter-spacing: 0.01em;
+    }
+    .hero-sub {
+      font-size: 0.95rem; color: var(--muted); margin-bottom: 30px; max-width: 480px; line-height: 1.75; font-weight: 300;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 36px; }
+    .tag {
+      font-family: var(--font-m); font-size: 0.68rem;
+      padding: 5px 13px; border-radius: 20px; border: 1px solid; letter-spacing: 0.04em;
+    }
+    .tag-b  { background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue-mid); }
+    .tag-b2 { background: #EAF4FB; border-color: #2A88B8; color: #1A6890; }
+    .tag-g  { background: #EAF5F0; border-color: #27835A; color: #1A6045; }
+    .tag-s  { background: #F0F0FA; border-color: #5557A0; color: #3D3F8A; }
+    .actions { display: flex; gap: 13px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 26px; border-radius: 5px;
+      font-family: var(--font-b); font-size: 0.87rem; font-weight: 500;
+      text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; letter-spacing: 0.02em;
+    }
+    .btn-p { background: var(--blue); color: var(--white); }
+    .btn-p:hover { background: var(--blue-mid); transform: translateY(-1px); }
+    .btn-o { background: transparent; color: var(--blue); border: 1.5px solid var(--border); }
+    .btn-o:hover { border-color: var(--blue); transform: translateY(-1px); }
+    .hero-stats {
+      position: absolute; right: 6vw; bottom: 60px; z-index: 1;
+      display: flex; gap: 32px; align-items: center;
+    }
+    .stat { text-align: center; }
+    .stat-n { font-family: var(--font-d); font-size: 2.8rem; color: var(--blue); display: block; line-height: 1; font-weight: 700; }
+    .stat-l { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-top: 4px; display: block; font-weight: 400; }
+    .stat-div { width: 1px; height: 44px; background: var(--border); }
+
+    /* SECTION BASE */
+    section { padding: 88px 6vw; }
+    .inner { max-width: 1060px; margin: 0 auto; }
+    .s-head { margin-bottom: 48px; }
+    .s-eye { font-family: var(--font-m); font-size: 0.68rem; color: var(--blue-mid); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 10px; }
+    .s-title { font-family: var(--font-d); font-size: clamp(2rem, 3.8vw, 3rem); color: var(--blue); line-height: 1.1; font-weight: 700; }
+    .s-line { width: 38px; height: 3px; background: var(--blue-mid); margin-top: 14px; border-radius: 2px; }
+    .alt { background: var(--blue-pale); }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
+    .about-text p { color: var(--slate); margin-bottom: 16px; font-size: 0.95rem; line-height: 1.9; font-weight: 300; }
+    .about-text strong { color: var(--blue); font-weight: 600; }
+    .about-cards { display: flex; flex-direction: column; gap: 13px; }
+    .acard {
+      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px 20px; display: flex; align-items: flex-start; gap: 13px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .acard:hover { box-shadow: 0 8px 28px var(--shadow); transform: translateY(-2px); }
+    .acard-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; background: var(--blue-light); }
+    .acard h4 { font-size: 0.85rem; font-weight: 600; color: var(--blue); margin-bottom: 2px; }
+    .acard p { font-size: 0.77rem; color: var(--muted); margin: 0; font-weight: 300; }
+
+    /* SKILLS */
+    .skills-wrap { display: flex; flex-direction: column; gap: 36px; }
+    .skill-cat-label {
+      font-family: var(--font-m); font-size: 0.66rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--blue-mid);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .skill-cat-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .skill-cards { display: flex; flex-wrap: wrap; gap: 11px; }
+    .skill-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+      padding: 13px 16px; display: flex; align-items: center; gap: 10px;
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+      cursor: default; min-width: 130px;
+    }
+    .skill-card:hover { box-shadow: 0 5px 20px var(--shadow); transform: translateY(-2px); border-color: var(--blue-mid); }
+    .skill-card .sk-icon { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .skill-card .sk-icon img { width: 22px; height: 22px; object-fit: contain; }
+    .skill-card .sk-icon i { font-size: 22px; }
+    .skill-card .sk-name { font-size: 0.82rem; font-weight: 500; color: var(--blue); white-space: nowrap; }
+
+    /* CERTS */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 13px; }
+    .ccard {
+      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+      padding: 15px 17px; display: flex; align-items: center; gap: 11px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .ccard:hover { box-shadow: 0 6px 20px var(--shadow); transform: translateY(-2px); border-color: var(--blue-mid); }
+    .cbadge { width: 34px; height: 34px; border-radius: 7px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+    .cname { font-size: 0.78rem; font-weight: 600; color: var(--blue); line-height: 1.3; }
+    .ctype { font-size: 0.66rem; color: var(--muted); margin-top: 2px; }
+
+    /* EXPERIENCE */
+    .exp-box {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 36px 40px;
+    }
+    .exp-role { font-family: var(--font-d); font-size: 1.8rem; color: var(--blue); font-weight: 700; line-height: 1.1; }
+    .exp-company { font-size: 0.88rem; color: var(--muted); font-weight: 400; margin-top: 4px; letter-spacing: 0.02em; }
+    .exp-period { font-family: var(--font-m); font-size: 0.7rem; color: var(--blue-mid); margin-top: 3px; }
+    .exp-divider { width: 100%; height: 1px; background: var(--border); margin: 22px 0; }
+    .tbullets { display: flex; flex-direction: column; gap: 10px; }
+    .tbullet { font-size: 0.88rem; color: var(--slate); line-height: 1.65; padding-left: 18px; position: relative; font-weight: 300; }
+    .tbullet::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--blue-mid); flex-shrink: 0; }
+    .tbullet strong { color: var(--blue); font-weight: 600; }
+    .thighlights { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
+    .thl {
+      font-family: var(--font-m); font-size: 0.7rem; font-weight: 500;
+      padding: 5px 13px; border-radius: 4px;
+      background: var(--white); border: 1px solid var(--border); color: var(--slate);
+    }
+    .thl.a { background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue); }
+
+    /* PROJECTS */
+    .pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(295px, 1fr)); gap: 20px; }
+    .pcard {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 26px; display: flex; flex-direction: column;
+      transition: box-shadow 0.25s, transform 0.25s; position: relative; overflow: hidden;
+    }
+    .pcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--blue-mid); }
+    .pcard.p2::before { background: #2A88B8; }
+    .pcard.p3::before { background: #27835A; }
+    .pcard:hover { box-shadow: 0 14px 44px var(--shadow); transform: translateY(-4px); }
+    .picon { font-size: 24px; margin-bottom: 10px; }
+    .ptitle { font-family: var(--font-d); font-size: 1.2rem; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+    .pdesc { font-size: 0.84rem; color: var(--slate); line-height: 1.72; flex: 1; margin-bottom: 18px; font-weight: 300; }
+    .ptech { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ptag { font-family: var(--font-m); font-size: 0.64rem; padding: 3px 9px; border-radius: 3px; background: var(--blue-pale); color: var(--slate); border: 1px solid var(--border); }
+
+    /* EDUCATION */
+    .egrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .ecard {
+      background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+      padding: 26px; transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .ecard:hover { box-shadow: 0 8px 28px var(--shadow); transform: translateY(-2px); }
+    .edeg { font-family: var(--font-d); font-size: 1.15rem; color: var(--blue); margin-bottom: 5px; font-weight: 700; }
+    .eschool { font-size: 0.84rem; color: var(--blue-mid); font-weight: 500; margin-bottom: 3px; }
+    .eyear { font-family: var(--font-m); font-size: 0.7rem; color: var(--muted); margin-bottom: 12px; }
+    .edetail { font-size: 0.82rem; color: var(--slate); line-height: 1.75; font-weight: 300; }
+    .ebadge {
+      display: inline-block; margin-top: 14px; font-family: var(--font-m); font-size: 0.67rem;
+      padding: 4px 12px; border-radius: 20px; background: var(--blue-light); border: 1px solid var(--blue-mid); color: var(--blue-mid);
+    }
+
+    /* CONTACT */
+    .cwrap { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
+    .cinfo h3 { font-family: var(--font-d); font-size: 1.8rem; color: var(--blue); margin-bottom: 12px; font-weight: 700; line-height: 1.2; }
+    .cinfo > p { color: var(--slate); line-height: 1.8; margin-bottom: 26px; font-size: 0.92rem; font-weight: 300; }
+    .clinks { display: flex; flex-direction: column; gap: 12px; }
+    .clink {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none; color: var(--blue); padding: 14px 17px;
+      border-radius: 10px; border: 1px solid var(--border); background: var(--white);
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    }
+    .clink:hover { box-shadow: 0 6px 22px var(--shadow); transform: translateY(-2px); border-color: var(--blue-mid); }
+    .clink-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+    .clink strong { display: block; font-size: 0.82rem; color: var(--blue); font-weight: 600; }
+    .clink span { font-size: 0.74rem; color: var(--muted); }
+    .ccta { background: var(--blue-pale); border-radius: 12px; padding: 30px; border: 1px solid var(--border); }
+    .ccta h4 { font-family: var(--font-d); font-size: 1.4rem; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+    .ccta p { font-size: 0.83rem; color: var(--slate); margin-bottom: 20px; line-height: 1.75; font-weight: 300; }
+
+    /* FOOTER */
+    footer {
+      background: var(--blue); color: rgba(255,255,255,0.7);
+      padding: 32px 6vw; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .fname { font-family: var(--font-d); font-size: 1.15rem; color: var(--white); font-weight: 700; }
+    .fcopy { font-size: 0.74rem; }
+
+    /* ANIMATIONS */
+    .fu { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fu.vis { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+
+      /* Nav */
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 62px; left: 0; right: 0;
+        background: rgba(255,255,255,0.98); backdrop-filter: blur(14px);
+        padding: 20px 6vw 28px; border-bottom: 1px solid var(--border); gap: 18px;
+        z-index: 99;
+      }
+      .nav-links.open a { font-size: 0.9rem; }
+
+      /* Hero — stack everything, remove absolute stats */
+      .hero {
+        min-height: auto;
+        padding: 52px 6vw 52px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-blob.b1 { width: 280px; height: 280px; top: -60px; right: -60px; }
+      .hero-blob.b2 { display: none; }
+      .hero h1 { font-size: clamp(2.8rem, 12vw, 4rem); }
+      .hero-roles { font-size: 1rem; }
+      .hero-sub { font-size: 0.9rem; max-width: 100%; }
+      .tags { gap: 8px; }
+      .tag { font-size: 0.65rem; padding: 4px 11px; }
+      .actions { flex-direction: column; gap: 10px; }
+      .btn { width: 100%; justify-content: center; padding: 13px 20px; }
+
+      /* Stats: move inline below buttons */
+      .hero-stats {
+        position: static;
+        margin-top: 36px;
+        justify-content: flex-start;
+        gap: 24px;
+        width: 100%;
+      }
+      .stat-n { font-size: 2rem; }
+      .stat-l { font-size: 0.62rem; }
+      .stat-div { height: 36px; }
+
+      /* Sections */
+      section { padding: 60px 5vw; }
+      .s-title { font-size: clamp(1.7rem, 6vw, 2.2rem); }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+
+      /* Skills — make cards scroll horizontally per category */
+      .skill-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+      }
+      .skill-card { min-width: 0; }
+      .skill-card .sk-name { font-size: 0.78rem; white-space: normal; }
+
+      /* Certs */
+      .cert-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .ccard { padding: 13px 14px; gap: 9px; }
+      .cname { font-size: 0.74rem; }
+
+      /* Experience */
+      .exp-box { padding: 22px 20px; }
+      .exp-role { font-size: 1.45rem; }
+      .tbullet { font-size: 0.84rem; }
+      .thighlights { gap: 8px; }
+      .thl { font-size: 0.67rem; padding: 4px 10px; }
+
+      /* Projects */
+      .pgrid { grid-template-columns: 1fr; gap: 16px; }
+      .pcard { padding: 22px; }
+      .ptitle { font-size: 1.05rem; }
+      .pdesc { font-size: 0.82rem; }
+
+      /* Education */
+      .egrid { grid-template-columns: 1fr; gap: 16px; }
+      .ecard { padding: 22px; }
+      .edeg { font-size: 1rem; }
+
+      /* Contact */
+      .cwrap { grid-template-columns: 1fr; gap: 28px; }
+      .cinfo h3 { font-size: 1.4rem; }
+      .ccta { padding: 22px; }
+      .ccta .btn { width: 100%; justify-content: center; }
+
+      /* Footer */
+      footer { flex-direction: column; align-items: flex-start; gap: 6px; padding: 26px 6vw; }
+    }
+
+    /* Tiny screens */
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 2.6rem; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .skill-cards { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Sticky Navbar -->
-  <nav class="navbar">
-    <ul>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#resume">Resume</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Ridhi Thakker</span>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.getElementById('navlinks').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <!-- Hero/Header -->
-  <header class="hero">
-    <div class="hero-text">
-      <h1>Ridhi Thakker</h1>
-      <p>Salesforce Developer & Data Analyst Enthusiast</p>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="hero-content fu vis">
+    <h1>Ridhi<br>Thakker</h1>
+    <p class="hero-roles">Salesforce Developer &amp; Data Analyst</p>
+    <p class="hero-sub">Engineer at TCS with 4+ years in enterprise Salesforce CRM. 10x certified, building intelligent solutions across Sales, Service and Commerce Cloud.</p>
+    <div class="tags">
+      <span class="tag tag-b">10x Salesforce Certified</span>
+      <span class="tag tag-b2">Agentforce &amp; Einstein AI</span>
+      <span class="tag tag-g">Data Science &amp; ML</span>
+      <span class="tag tag-s">BITS Pilani MTech</span>
     </div>
-    <div class="hero-logos">
-      <img src="assets/images/Salesforce.png" alt="Salesforce" />
-      <img src="assets/images/data-analytics.png" alt="Data Analytics" />
+    <div class="actions">
+      <a href="#experience" class="btn btn-p">Where I've Been</a>
+      <a href="#contact" class="btn btn-o">Get In Touch</a>
     </div>
-  </header>
-
-  <!-- Skills -->
-  <section id="skills" data-aos="fade-up">
-    <h2>Skills</h2>
-    <div class="skills-scroll">
-      <img src="assets/images/Salesforce.png" alt="Salesforce">
-      <img src="assets/images/apex.png" alt="Apex">
-      <img src="assets/images/lwc.png" alt="LWC">
-      <img src="assets/images/javascript.png" alt="JavaScript">
-      <img src="assets/images/python.png" alt="Python">
-      <img src="assets/images/sql.png" alt="SQL">
-      <img src="assets/images/tableau.png" alt="Tableau">
-      <img src="assets/images/github.png" alt="GitHub">
-      <img src="assets/images/html.png" alt="HTML5">
-      <img src="assets/images/css.png" alt="CSS3">
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-n">4+</span><span class="stat-l">Years Exp.</span></div>
+    <div class="stat-div"></div>
+    <div class="stat">
+      <span class="stat-n">10x</span>
+      <span class="stat-l">Certified</span>
     </div>
-  </section>
+    <div class="stat-div"></div>
+    <div class="stat"><span class="stat-n">30+</span><span class="stat-l">Solutions Built</span></div>
+  </div>
+</header>
 
-  <!-- Resume -->
-  <section id="resume" data-aos="fade-up">
-    <h2>Resume</h2>
-    <p><a href="resume/RidhiThakker_Salesforce.pdf" target="_blank">Download My Resume (PDF)</a></p>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" data-aos="fade-up">
-    <h2>Projects</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <h3>Salesforce Automation</h3>
-        <p>Automated lead assignment & task creation using Flow & Apex.</p>
+<!-- ABOUT -->
+<section id="about" class="alt">
+  <div class="inner">
+    <div class="s-head fu">
+      <div class="s-eye">Who I Am</div>
+      <h2 class="s-title">Salesforce Engineer at TCS</h2>
+      <div class="s-line"></div>
+    </div>
+    <div class="about-grid fu">
+      <div class="about-text">
+        <p>I'm a <strong>Salesforce Engineer at TCS</strong> with 4+ years of experience delivering enterprise CRM solutions. I specialise in Apex, Lightning Web Components, and complex integrations across Service Cloud, Sales Cloud, and Commerce Cloud.</p>
+        <p>I've resolved thousands of critical platform issues, built 30+ custom solutions, and helped enterprise clients achieve measurable performance gains across their Salesforce orgs.</p>
+        <p>I bring a strong customer-first mindset alongside deep technical expertise, from platform troubleshooting and root cause analysis to architecting scalable automation and intelligent CRM workflows.</p>
       </div>
-      <div class="project-card">
-        <h3>Data Dashboard</h3>
-        <p>Built in Tableau to visualize Salesforce case resolution times.</p>
+      <div class="about-cards">
+        <div class="acard">
+          <div class="acard-icon">⚡</div>
+          <div><h4>Salesforce Development</h4><p>Apex, LWC, Flows, integrations across Service, Sales and Commerce Cloud</p></div>
+        </div>
+        <div class="acard">
+          <div class="acard-icon">🤖</div>
+          <div><h4>AI and Agentforce</h4><p>Intelligent CRM automation with Agentforce, Einstein AI, and agentic AI workflows</p></div>
+        </div>
+        <div class="acard">
+          <div class="acard-icon">📊</div>
+          <div><h4>Data and Analytics</h4><p>Power BI, Tableau, SQL and Python applied to enterprise CRM data</p></div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Contact -->
-  <section id="contact" data-aos="fade-up">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:thakker.ridhi@gmail.com">thakker.ridhi@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/ridhi-thakker-0a3328217" target="_blank">linkedin.com/in/ridhi-thakker-0a3328217</a></p>
-  </section>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="inner">
+    <div class="s-head fu">
+      <div class="s-eye">What I Work With</div>
+      <h2 class="s-title">Skills and Technologies</h2>
+      <div class="s-line"></div>
+    </div>
+    <div class="skills-wrap fu">
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Ridhi Thakker</p>
-  </footer>
+      <div>
+        <div class="skill-cat-label">Salesforce Platform</div>
+        <div class="skill-cards">
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">Apex</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">LWC</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">Agentforce</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">Visualforce</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">SOQL / SOSL</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">Data Cloud</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">Einstein AI</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">OmniStudio</span>
+          </div>
+        </div>
+      </div>
 
-  <!-- Scroll Animation Script -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init();</script>
+      <div>
+        <div class="skill-cat-label">Salesforce Clouds</div>
+        <div class="skill-cards">
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">Commerce Cloud B2C</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">Service Cloud</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">Sales Cloud</span>
+          </div>
+        </div>
+      </div>
 
+      <div>
+        <div class="skill-cat-label">Integrations</div>
+        <div class="skill-cards">
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="REST" /></span>
+            <span class="sk-name">REST APIs</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="MuleSoft" /></span>
+            <span class="sk-name">MuleSoft</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon">💬</span>
+            <span class="sk-name">Slack</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon">💳</span>
+            <span class="sk-name">Juspay</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon">🎁</span>
+            <span class="sk-name">Qwikcilver</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="skill-cat-label">AI and Agentic AI</div>
+        <div class="skill-cards">
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Agentforce" /></span>
+            <span class="sk-name">Agentforce</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon">🧠</span>
+            <span class="sk-name">Agentic AI</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon">🔁</span>
+            <span class="sk-name">ReAct Agents</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon">✏️</span>
+            <span class="sk-name">Prompt Engineering</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><i class="devicon-python-plain colored"></i></span>
+            <span class="sk-name">Python</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon">📐</span>
+            <span class="sk-name">scikit-learn</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon">🌲</span>
+            <span class="sk-name">XGBoost</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="skill-cat-label">Analytics and BI</div>
+        <div class="skill-cards">
+          <div class="skill-card">
+            <span class="sk-icon"><i class="devicon-mysql-plain colored"></i></span>
+            <span class="sk-name">SQL</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" alt="Tableau" /></span>
+            <span class="sk-name">Tableau</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/power-bi.svg" alt="Power BI" /></span>
+            <span class="sk-name">Power BI</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" /></span>
+            <span class="sk-name">Salesforce Reports</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="skill-cat-label">DevOps and Tools</div>
+        <div class="skill-cards">
+          <div class="skill-card">
+            <span class="sk-icon"><i class="devicon-github-original"></i></span>
+            <span class="sk-name">Git / GitHub</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><i class="devicon-jira-plain colored"></i></span>
+            <span class="sk-name">JIRA</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon">🏃</span>
+            <span class="sk-name">Agile / Scrum</span>
+          </div>
+          <div class="skill-card">
+            <span class="sk-icon"><i class="devicon-javascript-plain colored"></i></span>
+            <span class="sk-name">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="alt" style="padding-top: 0;">
+  <div class="inner">
+    <div class="s-head fu">
+      <div class="s-eye">Salesforce Credentials</div>
+      <h2 class="s-title">10x Certified</h2>
+      <div class="s-line"></div>
+    </div>
+    <div class="cert-grid fu">
+      <div class="ccard"><div class="cbadge">🤖</div><div><div class="cname">Agentforce Specialist</div><div class="ctype">AI and Automation</div></div></div>
+      <div class="ccard"><div class="cbadge">💻</div><div><div class="cname">Platform Developer I</div><div class="ctype">Development</div></div></div>
+      <div class="ccard"><div class="cbadge">⚡</div><div><div class="cname">JavaScript Developer I</div><div class="ctype">Development</div></div></div>
+      <div class="ccard"><div class="cbadge">🛒</div><div><div class="cname">B2C Commerce Developer</div><div class="ctype">Development</div></div></div>
+      <div class="ccard"><div class="cbadge">🏗️</div><div><div class="cname">App Builder</div><div class="ctype">Administration</div></div></div>
+      <div class="ccard"><div class="cbadge">📊</div><div><div class="cname">Data Consultant</div><div class="ctype">Consulting</div></div></div>
+      <div class="ccard"><div class="cbadge">🔧</div><div><div class="cname">Administrator</div><div class="ctype">Administration</div></div></div>
+      <div class="ccard"><div class="cbadge">🎓</div><div><div class="cname">Associate</div><div class="ctype">Administration</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="inner">
+    <div class="s-head fu">
+      <div class="s-eye">Where I Have Been</div>
+      <h2 class="s-title">Work Experience</h2>
+      <div class="s-line"></div>
+    </div>
+    <div class="exp-box fu">
+      <div class="exp-role">Engineer @ TCS</div>
+      <div class="exp-company">Tata Consultancy Services</div>
+      <div class="exp-period">2022 to Present</div>
+      <div class="exp-divider"></div>
+      <div class="tbullets">
+        <div class="tbullet">L2 escalation point for enterprise clients across Service Cloud, Sales Cloud and Commerce Cloud, maintaining <strong>99.5% uptime</strong> with strict SLA adherence.</div>
+        <div class="tbullet">Architected and delivered <strong>30+ Apex classes, LWC components, flows and validation rules</strong>, reducing UI load times by <strong>30%</strong> through optimised LWC development.</div>
+        <div class="tbullet">Delivered Salesforce integrations with MuleSoft, Juspay, Qwikcilver and Slack, improving cross-platform data consistency by <strong>40%</strong> and reducing integration escalations by <strong>90%</strong>.</div>
+        <div class="tbullet">Onboarded enterprise customers post-sale through technical discovery sessions, improving platform ROI for <strong>9 accounts</strong> by identifying feature utilisation gaps.</div>
+        <div class="tbullet">Migrated <strong>1M+ records</strong> from legacy systems with near-zero downtime. Built Power BI dashboards boosting team productivity by <strong>20%</strong>.</div>
+        <div class="tbullet">Authored knowledge base articles improving first-call resolution by <strong>35%</strong> and maintained GitHub version control and CI workflows across the team.</div>
+      </div>
+      <div class="thighlights">
+        <span class="thl a">🏆 Top Performer, Salesforce BU</span>
+        <span class="thl">99.5% Uptime</span>
+        <span class="thl">1M+ Records Migrated</span>
+        <span class="thl">90% Escalation Reduction</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="alt">
+  <div class="inner">
+    <div class="s-head fu">
+      <div class="s-eye">What I Have Built</div>
+      <h2 class="s-title">Featured Projects</h2>
+      <div class="s-line"></div>
+    </div>
+    <div class="pgrid fu">
+      <div class="pcard">
+        <div class="picon">🤖</div>
+        <h3 class="ptitle">AI-Driven CRM Optimization</h3>
+        <p class="pdesc">MTech dissertation at BITS Pilani. Designed an end-to-end data science pipeline to optimize CRM lead management, replacing static rule-based systems with ML-driven prediction. Built a supervised ML lead scoring engine using Logistic Regression, Random Forest and XGBoost on public CRM datasets, evaluated with AUC-ROC and F1-Score. Developed an AI Agent Automation Framework inspired by Salesforce Agentforce and ReAct architecture, triggering contextual CRM actions based on data-driven lead scores.</p>
+        <div class="ptech">
+          <span class="ptag">Agentforce</span><span class="ptag">ReAct Architecture</span><span class="ptag">XGBoost</span>
+          <span class="ptag">scikit-learn</span><span class="ptag">Python</span><span class="ptag">EDA</span><span class="ptag">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="pcard p2">
+        <div class="picon">⚡</div>
+        <h3 class="ptitle">Enterprise Salesforce Automation</h3>
+        <p class="pdesc">Delivered 30+ Apex classes, LWC components, and Flow automations for enterprise clients at TCS. Case routing rules in Service Cloud cut average handling time by 30%. Integrations with MuleSoft, Juspay and Qwikcilver improved data consistency by 40% and reduced integration escalations by 90%.</p>
+        <div class="ptech">
+          <span class="ptag">Apex</span><span class="ptag">LWC</span><span class="ptag">Service Cloud</span>
+          <span class="ptag">MuleSoft</span><span class="ptag">REST APIs</span>
+        </div>
+      </div>
+      <div class="pcard p3">
+        <div class="picon">📊</div>
+        <h3 class="ptitle">Operational Analytics Dashboards</h3>
+        <p class="pdesc">Built real-time dashboards for enterprise operational metrics using Power BI and Salesforce Reports, boosting team productivity by 20%. Developed Tableau dashboards for CRM data visualisation and authored runbooks that improved first-call resolution by 35%.</p>
+        <div class="ptech">
+          <span class="ptag">Power BI</span><span class="ptag">Tableau</span><span class="ptag">Salesforce Reports</span>
+          <span class="ptag">SQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="inner">
+    <div class="s-head fu">
+      <div class="s-eye">Academic Background</div>
+      <h2 class="s-title">Education</h2>
+      <div class="s-line"></div>
+    </div>
+    <div class="egrid fu">
+      <div class="ecard">
+        <div class="edeg">MTech in Data Science and Engineering</div>
+        <div class="eschool">BITS Pilani (WILP)</div>
+        <div class="eyear">Oct 2024 to Oct 2026 · In Progress</div>
+        <div class="edetail">Studying machine learning, data engineering, and AI systems. Dissertation focuses on ML-driven lead scoring and AI agent automation applied to Salesforce CRM workflows.</div>
+        <span class="ebadge">Currently Enrolled</span>
+      </div>
+      <div class="ecard">
+        <div class="edeg">BE in Computer Engineering</div>
+        <div class="eschool">Shree Swaminarayan Institute of Technology, GTU</div>
+        <div class="eyear">2018 to 2022 · Graduated</div>
+        <div class="edetail">Strong foundation in computer science, software engineering, and systems design underpinning enterprise Salesforce development and data analytics work.</div>
+        <span class="ebadge">CGPA: 9.37 / 10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt">
+  <div class="inner">
+    <div class="s-head fu">
+      <div class="s-eye">Let's Talk</div>
+      <h2 class="s-title">Get In Touch</h2>
+      <div class="s-line"></div>
+    </div>
+    <div class="cwrap fu">
+      <div class="cinfo">
+        <h3>Open to Salesforce and Data opportunities.</h3>
+        <p>Whether you're looking for a Salesforce Developer, Support Engineer, or a data-driven engineer who bridges both worlds, I'd love to connect.</p>
+        <div class="clinks">
+          <a href="mailto:thakker.ridhi@gmail.com" class="clink">
+            <div class="clink-icon">✉️</div>
+            <div><strong>Email</strong><span>thakker.ridhi@gmail.com</span></div>
+          </a>
+          <a href="https://linkedin.com/in/ridhi-thakker-0a3328217" target="_blank" class="clink">
+            <div class="clink-icon">🔗</div>
+            <div><strong>LinkedIn</strong><span>linkedin.com/in/ridhi-thakker-0a3328217</span></div>
+          </a>
+          <a href="https://github.com/ridhi-thakker" target="_blank" class="clink">
+            <div class="clink-icon">💻</div>
+            <div><strong>GitHub</strong><span>github.com/ridhi-thakker</span></div>
+          </a>
+        </div>
+      </div>
+      <div class="ccta">
+        <h4>Download My Resume</h4>
+        <p>A full overview of my Salesforce engineering experience, certifications, and data projects.</p>
+        <a href="resume/RidhiThakker_Resume.pdf" target="_blank" class="btn btn-p">Download Resume (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="fname">Ridhi Thakker</span>
+  <span class="fcopy">2025 · Built with HTML, CSS and care</span>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
